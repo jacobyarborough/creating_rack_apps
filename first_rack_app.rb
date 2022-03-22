@@ -28,6 +28,10 @@ class FilterLocalHost
   end 
 end 
 
+app = Rack::Builder.new do |builder|
+  builder.use FilterLocalHost 
+  builder.run RackApp.new 
+end 
 
 
-handler.run RackApp.new
+handler.run app 
